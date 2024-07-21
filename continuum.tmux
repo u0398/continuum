@@ -84,6 +84,8 @@ main() {
 		# status-left tmux option to get current tmux continuum status.
 		update_tmux_option "status-right"
 		update_tmux_option "status-left"
+    
+    set_tmux_option "@continuum-current-status" "${status_script}"
 	fi
 }
 main
