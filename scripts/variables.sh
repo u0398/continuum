@@ -12,7 +12,6 @@ status_option_default="interval"
 
 # continuum_status.sh output
 current_status="@continuum-current-status"
-current_status_default="~"
 
 # time when the tmux environment was last saved (unix timestamp)
 last_auto_save_option="@continuum-save-last-timestamp"
