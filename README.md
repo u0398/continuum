@@ -1,5 +1,13 @@
 # tmux-continuum
 
+Fork Features:
+
+This fork introduces two new features. First, it adds an option to configure the `#{continuum_status}` interpolation.
+
+- `set -g @continuum-status-option '{interval|duration|both}' # show auto save interval, duration since last auto save, or both`
+
+Second, it places the raw status in a new  `@continuum-current-status` option for use anywhere.
+
 Features:
 
 - continuous saving of tmux environment
