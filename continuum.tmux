@@ -85,7 +85,7 @@ main() {
 		update_tmux_option "status-right"
 		update_tmux_option "status-left"
     
-    set_tmux_option "$current_status" "${status_script}"
+    set_tmux_option "@continuum-current-status" "${status_script}"
 	fi
 }
 main
