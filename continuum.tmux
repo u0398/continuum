@@ -51,6 +51,12 @@ just_started_tmux_server() {
 	[ "$tmux_start_time" == "" ] || [ "$tmux_start_time" -gt "$(($(date +%s)-${restore_max_delay}))" ]
 }
 
+bootstrap_tmux_server() {
+	local tmux_start_time
+	tmux_start_time="$(tmux display-message -p -F '#{start_time}')"
+	[ "$tmux_start_time" == "" ] || [ "$tmux_start_time" -gt "$(($(date +%s)-2))" ]
+}
+
 start_auto_restore_in_background() {
 	"$CURRENT_DIR/scripts/continuum_restore.sh" &
 }
@@ -85,7 +91,16 @@ main() {
 		update_tmux_option "status-right"
 		update_tmux_option "status-left"
     
-    set_tmux_option "@continuum-current-status" "${status_script}"
-	fi
+    # Reload to fix current status option bootstrapping issue. It's a bad
+    # solution that hangs the client and loops sourcing for as long as
+    # condition is true. The minumum is 2 seconds. Reloading whatever 
+    # module needs bootstrapping works better, but would require more work.
+    if bootstrap_tmux_server; then
+      set_tmux_option "@continuum-current-status" "${status_script}"
+	    tmux source-file "$CURRENT_DIR/../../tmux.conf" >/dev/null 2>&1
+    else
+      set_tmux_option "@continuum-current-status" "${status_script}"
+    fi
+  fi
 }
 main
