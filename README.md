@@ -5,12 +5,13 @@
 > - `set -g @continuum-status-option '{interval|duration|both}' # show auto save interval, duration since last auto save, or both`
 > 
 > Second, it places the raw status in a new  `@continuum-current-status` option for use anywhere.
-> **Features:**
-> - continuous saving of tmux environment
-> - automatic tmux start when computer/server is turned on
-> - automatic restore when tmux is started
 
 # tmux-continuum
+
+Features:
+- continuous saving of tmux environment
+- automatic tmux start when computer/server is turned on
+- automatic restore when tmux is started
 
 Together, these features enable uninterrupted tmux usage. No matter the computer
 or server restarts, if the machine is on, tmux will be there how you left it off
